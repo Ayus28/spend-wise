@@ -10,7 +10,7 @@
 - Opportunity for Audit Engine: Recommend combining tools or switching to an aggregator like Poe.com or using API-based tools.
 
 ### Interview 2: The Casual Learner (Free Tier)
-- Name: Simran (Content Writer)
+- Name: Armaan (Content Writer)
 - Role: Freelance Blog Writing.
 - Tools Used: ChatGPT (Free) + Grammarly (Free).
 - Monthly Spend: $0.
@@ -18,9 +18,16 @@
 - Opportunity for Audit Engine: Suggest a single "Pro" subscription that offers the most value for writing (like Claude) to save time (Time = Money).
 
 ### Interview 3: The Developer (Value Focused)
-- Name: Ishaan (Junior Developer)
+- Name: Ayush Singh( Junior Developer)
 - Role: Working in a Startup.
 - Tools Used: GitHub Copilot ($10) + Cursor Pro ($20).
 - Monthly Spend: $30.
-- Problem (Pain Point): shaan is confused about whether he needs GitHub Copilot if he is already using Cursor Pro, since Cursor has built-in AI features
+- Problem (Pain Point): Ayush is confused about whether he needs GitHub Copilot if he is already using Cursor Pro, since Cursor has built-in AI features
 - Opportunity for Audit Engine: Identify "Feature Redundancy" (Ek hi kaam ke liye do tool). Recommend cancelling Copilot to save $120/year.
+
+### Interview 4: The Content Creator
+- Name: Ashish kumar (Automative marketing)
+- Tools: ChatGPT,Gemini,Grok,LeonardoAI.
+- Feedback: Successfully leveraging multiple free tools for writing and content creation specifically for the Automative marketing niche.
+-  Problem (Pain Point): Managing multiple accounts and switching between different platforms to stay within free limits.
+-  Insight: Even professional-grade work (Marketing) is being done using a "Multi-Tool Free Strategy".The Aduit tool can suggest when a paid "All-in-one" tool                 might actually save more time.
