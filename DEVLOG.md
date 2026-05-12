@@ -19,3 +19,26 @@
 - **Environment Cleanup**: Deleted the `.next` cache and re-installed dependencies using `npm install` to fix "next is not recognized" errors.
 - **Localhost Success**: Successfully started the development server and verified the project is running on `http://localhost:3000`.
 - **GitHub Sync**: Committed and pushed the stable setup to the repository.
+
+## Day 4: Dashboard Construction & Technical Debugging 🛠️
+
+### Progress Update:
+- **UI Development**: Created a fully functional dashboard using Next.js and Tailwind CSS.
+- **State Management**: Implemented `useState` to handle dynamic AI tool audits.
+- **Calculations**: Added logic to automatically calculate Total Monthly Spend and Estimated Savings.
+- **Clean UI**: Removed system debug messages ("SYSTEM READY") for a professional user experience.
+
+### Challenges & Fixes:
+1. **Next.js Config Error**: Fixed `next.config.ts` compatibility issue by renaming it to `next.config.mjs`.
+2. **Tailwind v4 Setup**: Resolved PostCSS plugin error by installing `@tailwindcss/postcss` and updating `postcss.config.js`.
+3. **Cache Issue**: Learned to use Hard Refresh (`Ctrl+Shift+R`) and delete `.next` folder to force-update browser changes.
+
+### Key Learnings:
+- Importance of saving files (`Ctrl+S`) before checking browser updates.
+- How `layout.tsx` and `page.tsx` work together in Next.js.
+- Debugging terminal errors step-by-step.
+
+### Status: 
+- **Total AI Tools Tracked**: 2 (Initial) + Dynamic Adding capability.
+- **System**: Operational and Clean.
+
