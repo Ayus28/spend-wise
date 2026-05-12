@@ -1,61 +1,131 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 
-export default function Home() {
+export default function Dashboard() {
+  // Data store karne ke liye list (Starting data)
+  const [audits, setAudits] = useState([
+    { id: 1, name: "ChatGPT Plus", cost: 20, date: "2026-05-10" },
+    { id: 2, name: "Midjourney", cost: 30, date: "2026-05-11" }
+  ]);
+
+  // Naye input ke liye states
+  const [toolName, setToolName] = useState("");
+  const [cost, setCost] = useState("");
+
+  // Naya audit add karne ka function
+  const addAudit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!toolName || !cost) return;
+    
+    const newAudit = {
+      id: Date.now(),
+      name: toolName,
+      cost: parseFloat(cost),
+      date: new Date().toISOString().split('T')[0]
+    };
+    
+    setAudits([...audits, newAudit]);
+    setToolName(""); // Form clear karne ke liye
+    setCost("");
+  };
+
+  // Total spend calculate karne ka logic
+  const totalSpend = audits.reduce((acc, curr) => acc + curr.cost, 0);
+  const potentialSavings = totalSpend * 0.2; // Maan lo 20% bacha sakte hain
+
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Sidebar & Header Navigation */}
-      <nav className="bg-blue-600 p-4 shadow-lg">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-white text-2xl font-bold tracking-tight">
-            AI <span className="text-blue-200">Spend Auditor</span>
+    <main className="p-8 bg-slate-50 min-h-screen text-slate-800">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* Main Heading */}
+        <header className="mb-10">
+          <h1 className="text-4xl font-extrabold text-blue-600 tracking-tight">
+            AI Spend Auditor 📊
           </h1>
-          <div className="flex space-x-4">
-            <button className="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition">
-              New Audit
-            </button>
-          </div>
-        </div>
-      </nav>
+          <p className="text-slate-500 mt-2">Track and optimize your AI subscriptions effectively.</p>
+        </header>
 
-      <main className="max-w-7xl mx-auto p-6 lg:p-8">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-slate-800">Day 4: Dashboard Preview</h2>
-          <p className="text-slate-600">Track your AI costs and savings in real-time.</p>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-sm font-medium text-slate-500 uppercase">Total Spend</p>
-            <p className="text-3xl font-bold text-slate-900 mt-1">$1,240.50</p>
-            <span className="text-green-500 text-sm font-medium">↓ 12% from last month</span>
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-l-8 border-l-blue-500">
+            <p className="text-sm text-slate-500 font-semibold uppercase tracking-wider">Total Monthly Spend</p>
+            <h2 className="text-4xl font-black mt-1">${totalSpend.toFixed(2)}</h2>
           </div>
           
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-sm font-medium text-slate-500 uppercase">AI Efficiency</p>
-            <p className="text-3xl font-bold text-slate-900 mt-1">84%</p>
-            <span className="text-blue-500 text-sm font-medium">Optimize further?</span>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-sm font-medium text-slate-500 uppercase">Est. Savings</p>
-            <p className="text-3xl font-bold text-blue-600 mt-1">$450.00</p>
-            <span className="text-slate-400 text-sm italic">Predicted by AI</span>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 border-l-8 border-l-green-500">
+            <p className="text-sm text-slate-500 font-semibold uppercase tracking-wider">Estimated Savings</p>
+            <h2 className="text-4xl font-black mt-1 text-green-600">${potentialSavings.toFixed(2)}</h2>
           </div>
         </div>
 
-        {/* Placeholder for Charts/Data */}
-        <div className="bg-white p-10 rounded-3xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-center">
-          <div className="bg-blue-100 p-4 rounded-full mb-4">
-            <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-            </svg>
+        {/* Action Section: Form */}
+        <section className="bg-white p-8 rounded-2xl shadow-sm mb-10 border border-slate-200">
+          <h3 className="text-lg font-bold mb-6 flex items-center">
+            <span className="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3">➕</span>
+            Add New Tool Audit
+          </h3>
+          <form onSubmit={addAudit} className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input 
+              type="text" 
+              placeholder="Tool Name (e.g. Claude.ai)" 
+              className="p-3 bg-slate-50 border border-slate-200 rounded-xl outline-blue-500 transition-all"
+              value={toolName}
+              onChange={(e) => setToolName(e.target.value)}
+              required
+            />
+            <input 
+              type="number" 
+              placeholder="Cost per month ($)" 
+              className="p-3 bg-slate-50 border border-slate-200 rounded-xl outline-blue-500 transition-all"
+              value={cost}
+              onChange={(e) => setCost(e.target.value)}
+              required
+            />
+            <button 
+              type="submit" 
+              className="bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 hover:shadow-lg transition-all active:scale-95"
+            >
+              Add to Audit
+            </button>
+          </form>
+        </section>
+
+        {/* Data Table Section */}
+        <section className="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-200">
+          <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+            <h3 className="font-bold text-slate-700">Audit History</h3>
           </div>
-          <h3 className="text-xl font-semibold text-slate-800">Your Audit Data will appear here</h3>
-          <p className="text-slate-500 max-w-sm mt-2">Connect your API keys or upload a billing CSV to start the AI analysis.</p>
-        </div>
-      </main>
-    </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead className="bg-slate-50 text-slate-500 text-sm uppercase">
+                <tr>
+                  <th className="p-5 font-semibold">AI Tool Name</th>
+                  <th className="p-5 font-semibold">Monthly Cost</th>
+                  <th className="p-5 font-semibold">Audit Date</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {audits.map((item) => (
+                  <tr key={item.id} className="hover:bg-blue-50/30 transition-colors">
+                    <td className="p-5 font-bold text-slate-700">{item.name}</td>
+                    <td className="p-5">
+                      <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-bold">
+                        ${item.cost.toFixed(2)}
+                      </span>
+                    </td>
+                    <td className="p-5 text-slate-400 text-sm">{item.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Footer info */}
+        <p className="text-center text-slate-400 text-xs mt-10">
+          Day 4 Complete • All systems operational
+        </p>
+      </div>
+    </main>
   );
-}
+} 
